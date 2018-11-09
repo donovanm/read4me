@@ -6,27 +6,52 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Read4me</title>
   <script src="background.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Product+Sans:300,300i,400,400i,500,600" rel="stylesheet" />
   <style>
     body {
-      background-color: black;
+      background-color: #444;
       color: #fff;
+      background-color: #bfc7ac;
+      color: #545454;
+      font-family: 'Product Sans', 'Roboto', 'Helvetica Neue', serif;
+      margin: 0;
+      margin-top: -15px; /* don't know why this is needed but there's a gap at the top otherwise */
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
     }
     .color-primary {
       color: #bc1a1a;
     }
     .container {
+      font-family: 'Product Sans', 'Roboto', 'Helvetica Neue', serif;
       width: 300px;
+    }
+    .header {
+      background-color: tan;
+      background-color: #ecf0b4;
+      color: #7d7d7d;
+      margin-top: 15px;
+      padding: 4px 10px;
     }
     .keywords {
       display: flex;
       justify-content: space-between;
+      padding: 0 10px 10px;
+    }
+    #keyword-listing {
+      margin: 5px 0 10px;
+    }
+    .title {
+      font-weight: 400;
+      margin: 0;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Read<span class="color-primary">4</span>me</h2>
-    <hr style="background-color: #555"></hr>
+    <div class="header">
+      <h2 class="title">Read<span class="color-primary">4</span>me</h2>
+    </div>
     <div class="keywords">
       <h3>Keywords</h3>
       <div>

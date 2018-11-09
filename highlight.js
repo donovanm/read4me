@@ -1,17 +1,14 @@
 start();
 
+const highlightOptions = { foreground: 'black', background: 'cyan', };
+
 function start() {
-  keywordsHighlighter({
-    foreground: 'black',
-    background: 'cyan',
-    keywords: ['the', 'while', 'browser'].join(','),
-  });
+  chrome.storage.sync.get(['keywords'], results => keywordsHighlighter(results.keywords, highlightOptions));
 }
 
-function keywordsHighlighter(options, remove) {
+// This function comes from https://github.com/wrzlbrmft/chrome-keywords-highlighter/blob/master/src/content.js
+function keywordsHighlighter(keywords, options, remove) {
   var occurrences = 0;
-
-  alert('running the highlighter');
 
   // Based on "highlight: JavaScript text higlighting jQuery plugin" by Johann Burkard.
   // http://johannburkard.de/blog/programming/javascript/highlight-javascript-text-higlighting-jquery-plugin.html
@@ -19,8 +16,9 @@ function keywordsHighlighter(options, remove) {
   function highlight(node, pos, keyword, options) {
     var span = document.createElement("span");
     span.className = "highlighted";
-    span.style.color = options.foreground;
-    span.style.backgroundColor = options.background;
+    // span.style.color = options.foreground;
+    // span.style.backgroundColor = options.background;
+    span.style.boxShadow = `0 4px 0 ${options.background}`;
 
     var highlighted = node.splitText(pos);
 		/*var afterHighlighted = */highlighted.splitText(keyword.length);
@@ -68,10 +66,8 @@ function keywordsHighlighter(options, remove) {
     removeHighlights(document.body);
   }
 
-  debugger;
-
-  var keywords = options.keywords.split(",");
-  delete options.keywords;
+  // var keywords = options.keywords.split(",");
+  // delete options.keywords;
   addHighlights(document.body, keywords, options);
 
   chrome.runtime.sendMessage({

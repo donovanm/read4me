@@ -1,5 +1,43 @@
 'use strict';
 
+const defaultKeywords = [
+  'seed',
+  'receives',
+  'received',
+  'receiving',
+  'receiv',
+  'raising',
+  'raised',
+  'raises',
+  'rais',
+  'invest',
+  'round',
+  '$',
+  '€',
+  '£',
+  'founded',
+  'series',
+  'backed',
+  'back',
+  'value',
+  'valued',
+  'valuation',
+  'valu',
+  'trading',
+  'funding',
+  'funded',
+  'fund',
+  'securing',
+  'secured',
+  'secur',
+  '.com',
+  '.io',
+  '.org',
+  'loan',
+  'lend',
+  'convertible',
+];
+
 // chrome.runtime.onInstalled.addListener(function () {
 //   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
 //     chrome.declarativeContent.onPageChanged.addRules([{
@@ -12,6 +50,15 @@
 //   });
 // });
 
+// Set default keywords if there are no stored keywords
+chrome.runtime.onInstalled.addListener(function () {
+  chrome.storage.sync.get(['keywords'], function (keywords) {
+    if (!keywords.length) {
+      chrome.storage.sync.set({ keywords: defaultKeywords });
+    }
+  });
+});
+
 document.addEventListener('DOMContentLoaded', () => new App());
 
 class App {
@@ -20,6 +67,11 @@ class App {
     this.renderKeywords();
     this.setEventListeners();
     this.highlighter = new Highlighter();
+
+    chrome.storage.sync.get(['keywords'], results => {
+      this.keywords = results.keywords;
+      this.render();
+    });
   }
 
   addItem() {
