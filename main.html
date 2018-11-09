@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Read4me</title>
+  <script src="background.js"></script>
+  <style>
+    body {
+      background-color: black;
+      color: #fff;
+    }
+    .color-primary {
+      color: #bc1a1a;
+    }
+    .container {
+      width: 300px;
+    }
+    .keywords {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Read<span class="color-primary">4</span>me</h2>
+    <hr style="background-color: #555"></hr>
+    <div class="keywords">
+      <h3>Keywords</h3>
+      <div>
+        <div id="keyword-listing"></div>
+        <input type="text" id="add-item-input" />
+        <button id="add-button">Add</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
